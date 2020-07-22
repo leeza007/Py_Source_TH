@@ -1,0 +1,8 @@
+C:\Users\Administrator\Desktop\Pangya-Server\Src\Py_AuthServer\Py_AuthServer\obj\Debug\Py_AuthServer.csprojAssemblyReference.cache
+C:\Users\Administrator\Desktop\Pangya-Server\Src\Py_AuthServer\Py_AuthServer\obj\Debug\Py_AuthServer.csproj.CoreCompileInputs.cache
+C:\Users\Administrator\Desktop\Pangya-Server\Src\Build\Py_AuthServer.exe.config
+C:\Users\Administrator\Desktop\Pangya-Server\Src\Build\Py_AuthServer.exe
+C:\Users\Administrator\Desktop\Pangya-Server\Src\Build\Py_AuthServer.pdb
+C:\Users\Administrator\Desktop\Pangya-Server\Src\Py_AuthServer\Py_AuthServer\obj\Debug\Py_AuthServer.csproj.CopyComplete
+C:\Users\Administrator\Desktop\Pangya-Server\Src\Py_AuthServer\Py_AuthServer\obj\Debug\Py_AuthServer.exe
+C:\Users\Administrator\Desktop\Pangya-Server\Src\Py_AuthServer\Py_AuthServer\obj\Debug\Py_AuthServer.pdb
