@@ -12,8 +12,8 @@ some programs are needed to run the project
 
 * [Visual Studio](https://visualstudio.microsoft.com/pt-br/) VS2019
 * [SQL SERVER](https://www.microsoft.com/pt-br/sql-server/sql-server-downloads) 2017 or higher used to create the database that will be used
-* [Pangya Client](https://drive.google.com/file/d/0B_RaG0yzITpITkxDTFhWNHBNdWM/view)  PangYa TH 829.00 used to connect to the server
-* [Pangya ProjectG](https://cdn.discordapp.com/attachments/450003675906048000/732312190480023713/ProjectG-Server.rar) 
+* [Pangya Client](https://drive.google.com/file/d/0B_RaG0yzITpITkxDTFhWNHBNdWM/view)  PangYa TH 829.01 used to connect to the server
+* [Pangya ProjectG](https://cdn.discordapp.com/attachments/450003675906048000/732312190480023713/ProjectG-Server.rar) ProjectG Unpacked 829.01
 ### Installation
 
 the first project to be run will be AuthServer, because the same thing will be to sync all servers
