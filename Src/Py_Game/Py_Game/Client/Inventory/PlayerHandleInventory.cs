@@ -20,7 +20,7 @@ namespace Py_Game.Client.Inventory
     public partial class PlayerInventory
     {
         #region Methods Array of Byte
-        public byte[] GetToolbar()
+        public override byte[] GetToolbar()
         {
             PangyaBinaryWriter Reply;
 
@@ -30,16 +30,16 @@ namespace Py_Game.Client.Inventory
             Reply.Write(GetEquipData());
             return Reply.GetBytes();
         }
-        public byte[] GetCharData()
+        public override byte[] GetCharData()
         {
             return ItemCharacter.GetCharData(CharacterIndex);
         }
-        public byte[] GetCharData(uint Index)
+        public override byte[] GetCharData(uint Index)
         {
 
             return ItemCharacter.GetCharData(Index);
         }
-        public byte[] GetMascotData()
+        public override byte[] GetMascotData()
         {
             PlayerMascotData MascotInfo;
             MascotInfo = ItemMascot.GetMascotByIndex(MascotIndex);
@@ -50,7 +50,7 @@ namespace Py_Game.Client.Inventory
             return new byte[0x3E];
         }
 
-        public byte[] GetTrophyInfo()
+        public override byte[] GetTrophyInfo()
         {
             return ItemTrophies.GetTrophy();
         }
@@ -58,7 +58,7 @@ namespace Py_Game.Client.Inventory
         /// GetSize 116 bytes
         /// </summary>
         /// <returns></returns>
-        public byte[] GetEquipData()
+        public override byte[] GetEquipData()
         {
             var result = new PangyaBinaryWriter();
 
@@ -83,7 +83,7 @@ namespace Py_Game.Client.Inventory
         /// GetCharacter(513 bytes), GetCaddie(25 bytes),ClubSet(28 bytes), Mascot(62 bytes), Total Size 634 
         /// </summary>
         /// <returns>Select(634 array of byte)</returns>
-        public byte[] GetEquipInfo()
+        public override byte[] GetEquipInfo()
         {
             var Response = new PangyaBinaryWriter();
             Response.Write(GetCharData());
@@ -93,7 +93,7 @@ namespace Py_Game.Client.Inventory
             return Response.GetBytes();
         }
 
-        public byte[] GetClubData()
+        public override byte[] GetClubData()
         {
             PlayerItemData ClubInfo;
             ClubInfo = ItemWarehouse.GetItem(this.ClubSetIndex);
@@ -104,7 +104,7 @@ namespace Py_Game.Client.Inventory
             return ClubInfo.GetClubInfo();
         }
 
-        public byte[] GetCaddieData()
+        public override byte[] GetCaddieData()
         {
             PlayerCaddieData CaddieInfo;
             CaddieInfo = ItemCaddie.GetCaddieByIndex(CaddieIndex);
@@ -115,12 +115,12 @@ namespace Py_Game.Client.Inventory
             return new byte[0x19];
         }
         // transaction
-        public byte[] GetTransaction()
+        public override byte[] GetTransaction()
         {
             return ItemTransaction.GetTran();
         }
 
-        public byte[] GetDecorationData()
+        public override byte[] GetDecorationData()
         {
             using (var result = new PangyaBinaryWriter())
             {
@@ -128,7 +128,7 @@ namespace Py_Game.Client.Inventory
                 return result.GetBytes();
             }
         }
-        public byte[] GetGolfEQP()
+        public override byte[] GetGolfEQP()
         {
             using (var Packet = new PangyaBinaryWriter())
             {
@@ -144,7 +144,7 @@ namespace Py_Game.Client.Inventory
         // poster
 
 
-        public bool SetCutInIndex(uint CharIndex, uint CutinIndex)
+        public override bool SetCutInIndex(uint CharIndex, uint CutinIndex)
         {
             if (CutinIndex == 0)
             {
@@ -164,14 +164,14 @@ namespace Py_Game.Client.Inventory
             ItemCharacter.UpdateCharacter(CharType);
             return true;
         }
-        public bool SetPoster(uint Poster1, uint Poster2)
+        public override bool SetPoster(uint Poster1, uint Poster2)
         {
             this.Poster1 = Poster1;
             this.Poster2 = Poster2;
             return true;
         }
 
-        public bool IsExist(uint TypeID, uint Index, uint Quantity)
+        public override bool IsExist(uint TypeID, uint Index, uint Quantity)
         {
             switch (GetPartGroup(TypeID))
             {
@@ -190,7 +190,7 @@ namespace Py_Game.Client.Inventory
         }
 
         // item exists?
-        public bool IsExist(uint TypeId)
+        public override bool IsExist(uint TypeId)
         {
             List<Dictionary<uint, uint>> ListSet;
             switch (GetPartGroup(TypeId))
@@ -227,7 +227,7 @@ namespace Py_Game.Client.Inventory
             return false;
         }
 
-        public bool Available(uint TypeID, uint Quantity)
+        public override bool Available(uint TypeID, uint Quantity)
         {
 
             var ListSet = IffEntry.SetItem.SetList(TypeID);
@@ -317,7 +317,7 @@ namespace Py_Game.Client.Inventory
             return false;
         }
 
-        public bool SetMascotText(uint MascotIdx, string MascotText)
+        public override bool SetMascotText(uint MascotIdx, string MascotText)
         {
             PlayerMascotData Mascot;
             Mascot = ItemMascot.GetMascotByIndex(MascotIdx);
@@ -329,7 +329,7 @@ namespace Py_Game.Client.Inventory
             return false;
         }
         // caddie system
-        public bool SetCaddieIndex(uint Index)
+        public override bool SetCaddieIndex(uint Index)
         {
             PlayerCaddieData Caddie;
             if (Index == 0)
@@ -347,7 +347,7 @@ namespace Py_Game.Client.Inventory
         }
 
         // mascot system
-        public bool SetMascotIndex(uint Index)
+        public override bool SetMascotIndex(uint Index)
         {
             PlayerMascotData Mascot;
             if (Index == 0)
@@ -364,7 +364,7 @@ namespace Py_Game.Client.Inventory
             return true;
         }
 
-        public bool SetCharIndex(uint CharID)
+        public override bool SetCharIndex(uint CharID)
         {
             PlayerCharacterData Char;
             Char = ItemCharacter.GetChar(CharID, CharType.bIndex);
@@ -376,7 +376,7 @@ namespace Py_Game.Client.Inventory
             return true;
         }
 
-        public bool SetBackgroudIndex(uint typeID)
+        public override bool SetBackgroudIndex(uint typeID)
         {
             var Get = ItemWarehouse.GetItem(typeID, 1);
             if (Get == null)
@@ -388,20 +388,9 @@ namespace Py_Game.Client.Inventory
             return true;
         }
 
-        public bool SetrameIndex(uint typeID)
-        {
-            var Get = ItemWarehouse.GetItem(typeID, 1);
-            if (Get == null)
-            {
-                return false;
-            }
-            ItemDecoration.FrameTypeID = typeID;
-            FrameIndex = Get.ItemIndex;
-            return true;
-        }
 
 
-        public bool SetStickerIndex(uint typeID)
+        public override bool SetStickerIndex(uint typeID)
         {
             var Get = ItemWarehouse.GetItem(typeID, 1);
             if (Get == null)
@@ -412,7 +401,7 @@ namespace Py_Game.Client.Inventory
             StickerIndex = Get.ItemIndex;
             return true;
         }
-        public bool SetSlotIndex(uint typeID)
+        public override bool SetSlotIndex(uint typeID)
         {
             var Get = ItemWarehouse.GetItem(typeID, 1);
             if (Get == null)
@@ -424,7 +413,7 @@ namespace Py_Game.Client.Inventory
             return true;
         }
 
-        public bool SetTitleIndex(uint ID)
+        public override bool SetTitleIndex(uint ID)
         {
             var Get = ItemWarehouse.GetItem(ID);
             if (Get == null)
@@ -435,9 +424,10 @@ namespace Py_Game.Client.Inventory
             TitleIndex = Get.ItemIndex;
             return true;
         }
-        public bool SetDecoration(uint background, uint frame, uint sticker, uint slot, uint un, uint title)
+
+        public override bool SetDecoration(uint background, uint frame, uint sticker, uint slot, uint un, uint title)
         {
-            if (SetBackgroudIndex(background) || SetrameIndex(frame) || SetStickerIndex(sticker) || SetSlotIndex(slot) || SetTitleIndex(title))
+            if (SetBackgroudIndex(background) || SetFrameIndex(frame) || SetStickerIndex(sticker) || SetSlotIndex(slot) || SetTitleIndex(title))
             {
                 ItemDecoration.UnknownTypeID = un;
                 return true;
@@ -446,7 +436,7 @@ namespace Py_Game.Client.Inventory
         }
 
         // club system
-        public bool SetClubSetIndex(uint Index)
+        public override bool SetClubSetIndex(uint Index)
         {
             PlayerItemData Club;
             Club = ItemWarehouse.GetItem(Index);
@@ -458,12 +448,12 @@ namespace Py_Game.Client.Inventory
             return true;
         }
 
-        public bool SetGolfEQP(uint BallTypeID, uint ClubSetIndex)
+        public override bool SetGolfEQP(uint BallTypeID, uint ClubSetIndex)
         {
             return (this.SetBallTypeID(BallTypeID) || this.SetClubSetIndex(ClubSetIndex));
         }
 
-        public bool SetBallTypeID(uint TypeID)
+        public override bool SetBallTypeID(uint TypeID)
         {
             PlayerItemData Ball;
             Ball = ItemWarehouse.GetItem(TypeID, 1);
@@ -479,25 +469,13 @@ namespace Py_Game.Client.Inventory
 
         #region Methods UInt32
 
-        [MethodImpl(MethodImplOptions.NoInlining)]
-        public uint GetItemGroup(uint TypeID)
-        {
-            var result = (uint)Round((TypeID & 4227858432) / Pow(2.0, 26.0));
+       
 
-            return result;
-        }
-
-        public uint DaysBetween(DateTime? d1, DateTime d2)
-        {
-            TimeSpan span = d1.Value.Subtract(d2);
-            return Convert.ToUInt32(span.Days);
-        }
-
-        public uint GetTitleTypeID()
+        public override uint GetTitleTypeID()
         {
             return ItemDecoration.TitleTypeID;
         }
-        public uint GetCharTypeID()
+        public override uint GetCharTypeID()
         {
             PlayerCharacterData CharInfo;
             CharInfo = ItemCharacter.GetChar(CharacterIndex, CharType.bIndex);
@@ -508,7 +486,7 @@ namespace Py_Game.Client.Inventory
             return 0;
         }
 
-        public uint GetCutinIndex()
+        public override uint GetCutinIndex()
         {
             PlayerCharacterData CharInfo;
             CharInfo = ItemCharacter.GetChar(CharacterIndex, CharType.bIndex);
@@ -520,7 +498,7 @@ namespace Py_Game.Client.Inventory
         }
 
 
-        public uint GetMascotTypeID()
+        public override uint GetMascotTypeID()
         {
             PlayerMascotData MascotInfo;
             MascotInfo = ItemMascot.GetMascotByIndex(MascotIndex);
@@ -531,7 +509,7 @@ namespace Py_Game.Client.Inventory
             return 0;
         }
 
-        public uint GetQuantity(uint TypeId)
+        public override uint GetQuantity(uint TypeId)
         {
             switch (GetPartGroup(TypeId))
             {
@@ -550,6 +528,19 @@ namespace Py_Game.Client.Inventory
             result = (uint)Round((TypeID & 4227858432) / Pow(2.0, 26.0));
             return result;
         }
+
+
+        public override bool SetFrameIndex(uint typeID)
+        {
+            var Get = ItemWarehouse.GetItem(typeID, 1);
+            if (Get == null)
+            {
+                return false;
+            }
+            ItemDecoration.FrameTypeID = typeID;
+            FrameIndex = Get.ItemIndex;
+            return true;
+        }
         #endregion
 
         #region Methods GetItem
@@ -566,11 +557,11 @@ namespace Py_Game.Client.Inventory
         }
 
         //THIS IS USE OR UCC THAT ALREADY PAINTED
-        public PlayerItemData GetUCC(uint TypeId, string UCC_UNIQUE, bool Status)
+        public PlayerItemData GetUCC(uint TypeId, string UCC_UNIQUE, byte Status = 1)
         {
             foreach (PlayerItemData ItemUCC in ItemWarehouse)
             {
-                if ((ItemUCC.ItemTypeID == TypeId) && (ItemUCC.ItemUCCUnique == UCC_UNIQUE) && (ItemUCC.ItemUCCStatus == 1))
+                if ((ItemUCC.ItemTypeID == TypeId) && (ItemUCC.ItemUCCUnique == UCC_UNIQUE) && (ItemUCC.ItemUCCStatus == Status))
                 {
                     return ItemUCC;
                 }
@@ -1178,6 +1169,7 @@ namespace Py_Game.Client.Inventory
             ItemDeletedData.SetData(false, 0, 0, 0, 0, string.Empty, 0, DateTime.Now);
             return (ItemDeletedData);
         }
+
         #endregion
     }
 }

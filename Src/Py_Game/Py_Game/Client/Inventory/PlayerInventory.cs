@@ -1,14 +1,14 @@
 ﻿using System;
 using System.Linq;
 using System.Text;
+using PangyaAPI.PangyaClient.Data;
 using Py_Connector.DataBase;
 using Py_Game.Client.Inventory.Data.ItemDecoration;
 using Py_Game.Client.Inventory.Data.Slot;
-
 using Py_Game.Client.Inventory.Collection;
 namespace Py_Game.Client.Inventory
 {
-    public partial class PlayerInventory
+    public partial class PlayerInventory : InventoryAbstract
     {
         public ItemDecorationData ItemDecoration;
         public ItemSlotData ItemSlot { get; set; }
@@ -167,6 +167,5 @@ namespace Py_Game.Client.Inventory
             // close for next player
             return SQLString.ToString();
         }
-
     }
 }

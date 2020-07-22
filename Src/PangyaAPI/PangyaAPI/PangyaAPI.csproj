@@ -64,9 +64,8 @@
     <Compile Include="BinaryModels\PangyaBinaryWriter.cs">
       <DependentUpon>PangyaBinaryReader.cs</DependentUpon>
     </Compile>
-    <Compile Include="PangyaClient\Data\Inventory.cs" />
+    <Compile Include="PangyaClient\Data\InventoryAbstract.cs" />
     <Compile Include="Properties\GlobalSuppressions.cs" />
-    <Compile Include="PangyaClient\Data\UserInfo.cs" />
     <Compile Include="PangyaPacket\ClientPacket.cs" />
     <Compile Include="Tools\IniFiles.cs" />
     <Compile Include="Server\PangyaServer.cs" />
