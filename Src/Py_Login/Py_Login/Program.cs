@@ -25,8 +25,8 @@ namespace Py_Login
             for (;;)
             {
                 var comando = Console.ReadLine().Split(new char[] { ' ' }, 2);
-				
-				Server.RunCommand(comando);
+		
+		Server.RunCommand(comando);
             }
         }
 
