@@ -328,7 +328,6 @@
     <Compile Include="DataBase\USP_UCC_REQUEST_UPLOAD_Result.cs">
       <DependentUpon>EFPangya.tt</DependentUpon>
     </Compile>
-    <Compile Include="IniFile.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
