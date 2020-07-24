@@ -58,11 +58,6 @@ namespace Py_Login.MainServer
                 this._isRunning = true;
                 _server.Start((int)Data.MaxPlayers);
                 WriteConsole.WriteLine($"[SERVER_START]: PORT {Data.Port}", ConsoleColor.Green);
-
-                if (DateTime.Now == EndTime || (DateTime.Now.Month == EndTime.Month && DateTime.Now.Day == EndTime.Day))
-                {
-                    _isRunning = false;
-                }
                 //Inicia Thread para escuta de clientes
                 var WaitConnectionsThread = new Thread(new ThreadStart(HandleWaitConnections));
                 WaitConnectionsThread.Start();
