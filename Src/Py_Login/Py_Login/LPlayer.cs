@@ -154,7 +154,7 @@ namespace Py_Login
             int UID;
             USP_LOGIN_SERVER_Result UspLoginServer = null;
 
-            if (Program.Server.OpenServer)
+            if (Program.Server.OpenServer == false)
             {
                 Send(new byte[] { 0x01, 0x00, 0xE3, 0x48, 0xD2, 0x4D, 0x00 });
                 Disconnect();
@@ -188,7 +188,7 @@ namespace Py_Login
                         Logon = result.Logon, UID = result.UID
                     };
                 }
-                if (Pwd.Length <= 32)
+                if (Pwd.Length < 32)
                 {
                     UspLoginServer = _db.USP_LOGIN_SERVER(User, Pwd, GetAddress, Auth1, Auth2).FirstOrDefault();
                 }
@@ -234,8 +234,6 @@ namespace Py_Login
                 this.SetAUTH_KEY_1(Auth1);
                 this.SetAUTH_KEY_2(Auth2);
                 this.SetFirstLogin(FirstSet);
-
-               // Server.AuthServer.Send(new PangyaAPI.Auth.AuthPacket() { ServerType = PangyaAPI.Auth.AuthClientTypeEnum.LoginServer,ID = PangyaAPI.Auth.AuthPacketEnum.RECEIVES_USER_UID, Message = new { ID = UID} }) ;
 
                 if (UspLoginServer.Logon == 1)
                 {

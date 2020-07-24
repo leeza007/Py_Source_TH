@@ -41,7 +41,7 @@ namespace Py_Login.MainServer
 
                 _server = new TcpListener(IPAddress.Parse(Data.IP), (int)Data.Port);
 
-                OpenServer = true;
+                OpenServer = false;
             }
             catch (Exception erro)
             {
