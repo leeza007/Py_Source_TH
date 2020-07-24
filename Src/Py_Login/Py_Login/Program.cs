@@ -1,4 +1,4 @@
-﻿using PangyaAPI;
+using PangyaAPI;
 using PangyaAPI.PangyaClient;
 using PangyaAPI.PangyaPacket;
 using Py_Login.MainServer;
@@ -25,7 +25,7 @@ namespace Py_Login
             for (;;)
             {
                 var comando = Console.ReadLine().Split(new char[] { ' ' }, 2);
-                
+				
 				Server.RunCommand(comando);
             }
         }
