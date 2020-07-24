@@ -25,20 +25,8 @@ namespace Py_Login
             for (;;)
             {
                 var comando = Console.ReadLine().Split(new char[] { ' ' }, 2);
-                switch (comando[0].ToLower())
-                {
-                    case "": break;
-                    case "cls":
-                        case "clear":
-                        case "limpa":
-                        {
-                            Console.Clear();
-                        }
-                        break;
-                    default:
-                        Console.WriteLine("Comando inexistente");
-                        break;
-                }
+                
+				Server.RunCommand(comando);
             }
         }
 
